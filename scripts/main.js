@@ -19,6 +19,14 @@ function main()
 	var checkTwitter = setInterval(function(){
 		searchTwitter("#ListenTo");
 	}, 1500);
+
+}
+
+function soundtouch_example() {
+	mojo = getSoundtouch("10.60.6.50");
+    mojo.search("INTERNET_RADIO", "", "Rock", function(items) {
+        alert(items);
+    } );
 }
 
 function setIP()
