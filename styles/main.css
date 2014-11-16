@@ -3,6 +3,10 @@ body {
 	color: white;
 }
 
+#deviceIP {
+	margin-right: 10px;
+}
+
 .button {
 	background-color: white;
 	color: black;
@@ -20,17 +24,57 @@ body {
 	cursor: pointer;
 }
 
+#nowPlaying {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#back {
+	background-color: white;
+	width: 75%;
+	height: 10px;
+	margin: auto;
+	position: relative;
+}
+
+#front {
+	background-color: black;
+	width: 0%;
+	height: 8px;
+	margin-top: 1px;
+	position: absolute;
+	left: 0px;
+}
+
+img {
+	height: 100px;
+	width: 100px;
+}
+
+#queue {
+	margin-top: 50px;
+	display: inline-block;
+	/*margin: auto;
+	text-align: center;*/
+	width: 100%;
+	text-align: center;
+}
+
 .music_option {
 	background-color: #99bad3;
 	border-radius: 15px;
 	display: inline-block;
+	/*float: left;*/
 	width: 300px;
 	position: relative;
 	padding: 15px 15px;
+	margin: 10px 5px;
+	text-align: left;
 }
 
 .music_option * {
-	background-color: red;
+	/*background-color: red;*/
+	text-align: left;
 }
 
 .music_option img {
@@ -45,10 +89,11 @@ body {
 	display: inline-block;
 	position: absolute;
 	margin-left: 20px;
+	/*padding-bottom: 20px auto;*/
 }
 
 .music_option .meta * {
-	background-color: blue;
+	/*background-color: blue;*/
 	margin: 12px auto;
 }
 
@@ -56,4 +101,9 @@ body {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
+}
+
+.disabled {
+	background-color: #363539;
+	color: white;
 }

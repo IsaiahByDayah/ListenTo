@@ -18,16 +18,46 @@
 	</div>
 	<div id="main">
 		<input id="deviceIP" placeholder="SoundTouch IP Address" type="text"><div id="setIP_button" class="button">Set</div>
-		<br>
-		<div id="start_button" class="button">Start</div><div id="stop_button" class="button">Stop</div>
+		<div id="search_button" class="button disabled">Search</div>
 	</div>
-	<div class="music_option">
-		<img src="images/placeholder.svg" alt="placeholder" class="album_art">
-		<div class="meta">
-			<p class="title">Shake It Off</p>
-			<p class="artist">Taylor Swift</p>
-			<p class="album">1989</p>
+	<div id="nowPlaying">
+		<div id="changeOut">
+			<img id='curCover' src="images/placeholder.svg" alt="placeholder" class="album_art">
+			<p><b>Title:</b> <i><span id='curTitle'>##_Track_Name_##</span></i> <b>Artist:</b> <i><span id='curArtist'>##_Artist_Name_##</span></i> <b>Album:</b> <i><span id='curAlbum'>##_Album_Name_##</span></i></p>			
 		</div>
+		<div id="back">
+			<div id="front"></div>
+		</div>
+	</div>
+	<div id="queue">
+		
+		<!-- <div class="music_option">
+			<img src="images/placeholder.svg" alt="placeholder" class="album_art">
+			<div class="meta">
+				<p class="title">##_Track_Name_##</p>
+				<p class="artist">##_Artist_Name_##</p>
+				<p class="album">##_Album_Name_##</p>
+			</div>
+		</div>
+
+		<div class="music_option">
+			<img src="images/placeholder.svg" alt="placeholder" class="album_art">
+			<div class="meta">
+				<p class="title">##_Track_Name_##</p>
+				<p class="artist">##_Artist_Name_##</p>
+				<p class="album">##_Album_Name_##</p>
+			</div>
+		</div>
+
+		<div class="music_option">
+			<img src="images/placeholder.svg" alt="placeholder" class="album_art">
+			<div class="meta">
+				<p class="title">##_Track_Name_##</p>
+				<p class="artist">##_Artist_Name_##</p>
+				<p class="album">##_Album_Name_##</p>
+			</div>
+		</div> -->
+
 	</div>
 </body>
 </html>

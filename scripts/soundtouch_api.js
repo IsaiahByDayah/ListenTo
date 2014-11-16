@@ -42,13 +42,7 @@ function getSoundtouch(ip) {
     nowPlaying: function(cb) {
       var url = 'now_playing';
       this.getUrl(url, function(data) {
-        var artist = $(data).find('artist')[0].innerHTML();
-        var album = $(data).find('album')[0].innerHTML();
-        var track = $(data).find('track')[0].innerHTML();
-        var art = $(data).find('art')[0].innerHTML();
-        var total_time = $(data).find('time')[0].attr('total');
-        var time = $(data).find('time')[0].innerHTML();
-        cb(artist, album, track, art, total_time, time);
+        cb($(data));
       } );
     }
   }
