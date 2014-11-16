@@ -24,8 +24,16 @@ function main()
 
 function soundtouch_example() {
 	mojo = getSoundtouch("10.60.6.50");
+    mojo.nowPlaying(function(artist, album, track, art, total_time, time) {
+      console.log(artist);
+      console.log(album);
+      console.log(track);
+      console.log(art);
+      console.log(total_time);
+      console.log(time);
+    } );
     mojo.search("INTERNET_RADIO", "", "Rock", function(items) {
-        alert(items);
+      alert(items);
     } );
 }
 
