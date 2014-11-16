@@ -2,3 +2,58 @@ body {
 	background-color: #3368d3;
 	color: white;
 }
+
+.button {
+	background-color: white;
+	color: black;
+	display: inline-block;
+	padding: 2px 4px;
+	border-radius: 5px;
+	/*border: 1px solid black;*/
+	margin: 0 5px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.music_option {
+	background-color: #99bad3;
+	border-radius: 15px;
+	display: inline-block;
+	width: 300px;
+	position: relative;
+	padding: 15px 15px;
+}
+
+.music_option * {
+	background-color: red;
+}
+
+.music_option img {
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+
+.music_option .meta {
+	/*width: 100px;*/
+	height: 100px;
+	display: inline-block;
+	position: absolute;
+	margin-left: 20px;
+}
+
+.music_option .meta * {
+	background-color: blue;
+	margin: 12px auto;
+}
+
+.no_select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}

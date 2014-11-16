@@ -5,14 +5,26 @@
 	<title>#ListenTo</title>
 
 	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/font-awesome-4.1.0/css/font-awesome.min.css">
+
+	<script src="scripts/jquery.js"></script>
 	<script src="scripts/main.js"></script>
+	<script src="scripts/twitter.js"></script>
 </head>
 <body>
 	<div id="header">
 		<h2>Welcome to <span class="fancy">#ListenTo</span></h2>
 	</div>
 	<div id="main">
-		<input id="deviceIP" placeholder="SoundTouch IP Address" type="text">
+		<input id="deviceIP" placeholder="SoundTouch IP Address" type="text"><div id="setIP_button" class="button">Set</div>
+	</div>
+	<div class="music_option">
+		<img src="images/placeholder.svg" alt="placeholder" class="album_art">
+		<div class="meta">
+			<p class="title">Shake It Off</p>
+			<p class="artist">Taylor Swift</p>
+			<p class="album">1989</p>
+		</div>
 	</div>
 </body>
 </html>
