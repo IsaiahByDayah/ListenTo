@@ -74,7 +74,7 @@ function updateProgressBar()
 
 function setDevice()
 {
-	// deviceIP = $('#deviceIP')[0].value + ':8080';
+	deviceIP = $('#deviceIP')[0].value;
 	console.log('IP Set!', deviceIP);
 	device = getSoundtouch(deviceIP);
 	// searchTwitter(getSearchTerm());
