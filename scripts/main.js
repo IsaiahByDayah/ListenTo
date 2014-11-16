@@ -169,9 +169,9 @@ function setCurTrack(track)
 {
 	console.log('Track:', track);
 	$('#curCover').attr('src', track.find('img').attr('src'));
-	// $('#curCover').innerHTML = track.find('img').src();
-	// $('#curCover').innerHTML = track.find('img').src();
-	// $('#curCover').innerHTML = track.find('img').src();
+	$('#curTitle').text(track.find('.title').text());
+	$('#curArtist').text(track.find('.artist').text());
+	$('#curAlbum').text(track.find('.album').text());
 }
 
 
