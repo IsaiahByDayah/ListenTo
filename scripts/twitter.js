@@ -35,7 +35,17 @@ function searchTwitter(q)
 		},
 		data: 'grant_type=client_credentials',
 		success: function(data, textStatus, jqXHR){
-			console.log(data);
+			// console.log(data);
+
+			for(var i = 0, len = data.statuses.length; i < len; i++)
+			{
+				var tweet = data.statuses[i].text;
+				// console.log('Tweet: ', tweet);
+				device.search("DEEZER", "isaiah_smith@bose.com", "Taylor Swift", function(list){
+					// console.log(list);
+					// appendTracks(list);
+				});
+			}
 		}
 	});
 }

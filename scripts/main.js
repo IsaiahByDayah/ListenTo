@@ -4,21 +4,31 @@ window.onload = main;
 **    Global Variables    **
 ***************************/
 
-var deviceIP = '192.168.1.13:8090'; //;
+var deviceIP = '192.168.1.13'; //;
+var device;
+
+var queue;
+
+var checkTwitter;
+
+var playing = false;
 
 function main()
 {
-	// alert("Hello World");
+	queue = [];
 
 	$('#setIP_button').on("click", function(e){
-		setIP();
+		setDevice();
 	});
 
-	// var sources = getSources();
+	$('#start_button').on("click", function(e){
+		if(device != undefined)
+			startInterval();
+	});
 
-	var checkTwitter = setInterval(function(){
-		searchTwitter("#ListenTo");
-	}, 1500);
+	$('#stop_button').on("click", function(e){
+		stopInterval();
+	});
 
 }
 
@@ -29,23 +39,51 @@ function soundtouch_example() {
     } );
 }
 
-function setIP()
+function setDevice()
 {
 	// deviceIP = $('#deviceIP')[0].value + ':8080';
 	console.log('IP Set!', deviceIP);
-	getSources();
+	device = getSoundtouch(deviceIP);
+	startInterval();
 }
 
-function getSources()
+function startInterval()
 {
-	$.ajax({
-		url: 'http://'+deviceIP+'/sources',
-		method: 'GET',
-		success: function(data, textStatus, jqXHR){
-			console.log(data);
-		},
-		complete: function(jqXHR, textStatus ){
-			console.log(jqXHR);
+	searchTwitter("#ListenTo");
+	checkTwitter = setInterval(function(){
+		searchTwitter("#ListenTo");
+	}, 1*60*1000);
+}
+
+function stopInterval()
+{
+	clearInterval(checkTwitter);
+}
+
+function appendTracks(list)
+{
+	for(var i = 0, len = list.length; i < len; i++)
+	{
+		var newItem = $(list[i]);
+		var contains = false;
+		for(var j = 0, len2 = queue.length; j < len2; j++)
+		{
+			// console.log($(list[j]).children('token')[0]);
+			if(queue[j].children('token')[0].innerHTML == newItem.children('token')[0].innerHTML)
+				contains = true;
 		}
-	});
+
+		if (!contains)
+			queue.push(newItem);
+	}
+
+	if (!playing)
+		playNext();	
+}
+
+function playNext()
+{
+	if(queue.length > 0)
+		console.log(queue[0]);
+	// device.select(queue[0].);
 }

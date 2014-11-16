@@ -23,7 +23,7 @@ function getSoundtouch(ip) {
       '</search>';
   
       this.postUrl(url, payload, function(data) {
-        cb($(data).find('ContentItem'));
+        cb($(data).find('item'));
       } );
       return this;
     },
