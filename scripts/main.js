@@ -4,7 +4,8 @@ window.onload = main;
 **    Global Variables    **
 ***************************/
 
-var deviceIP = '192.168.1.22'; //;
+console.log('IP: 192.168.1.3');
+
 var device;
 
 var queue;
@@ -36,13 +37,27 @@ function main()
 
 	$('#setIP_button').on("click", function(e){
 		setDevice();
-		ipSet = true;
-		$('#search_button').removeClass('disabled');
 	});
 
 	$('#search_button').on("click", function(e){
 		if(ipSet)
 			searchTwitter(getSearchTerm());
+	});
+
+	$('#skip_button').on("click", function(e){
+		if(ipSet)
+			playNext();
+	});
+
+	$("#queue").on("click", ".close_button", function() {
+		queue.splice($(this).parent().index(),1);
+		removeOption($(this).parent());
+		// console.log(queue);
+	    // console.log( $(this).parent().index() );
+	});
+
+	$("#info").on("click", function() {
+		
 	});
 }
 
@@ -57,51 +72,29 @@ function updateProgressBar()
 	front.width(((bar_cur/bar_max)*100)+'%');
 }
 
-// function soundtouch_example() {
-// 	mojo = getSoundtouch("10.60.6.50");
-//     mojo.nowPlaying(function(artist, album, track, art, total_time, time) {
-//       console.log(artist);
-//       console.log(album);
-//       console.log(track);
-//       console.log(art);
-//       console.log(total_time);
-//       console.log(time);
-//     } );
-//     mojo.search("INTERNET_RADIO", "", "Rock", function(items) {
-//       alert(items);
-//     } );
-// }
-
 function setDevice()
 {
 	deviceIP = $('#deviceIP')[0].value;
-	console.log('IP Set!', deviceIP);
-	device = getSoundtouch(deviceIP);
-	// searchTwitter(getSearchTerm());
-	// startInterval();
+	if(deviceIP.replace(/\s/g, "") != '')
+	{
+		console.log('IP Set!', deviceIP);
+		device = getSoundtouch(deviceIP);
+		ipSet = true;
+		$('#search_button').removeClass('disabled').removeClass('hide');
+		$('#skip_button').removeClass('disabled').removeClass('hide');
+	}
 }
-
-// function startInterval()
-// {
-// 	searchTwitter("#ListenTo");
-// 	checkTwitter = setInterval(function(){
-// 		searchTwitter("#ListenTo");
-// 	}, 1*60*1000);
-// }
-
-// function stopInterval()
-// {
-// 	clearInterval(checkTwitter);
-// }
 
 function handleDeezerSearch(list)
 {
 	// for(var i = 0, len = list.length; i < len; i++)
 	if(list.length > 0)
 	{
-		console.log('Recieved Deezer search results.');
+		// console.log('Adding Track.');
 
-		var i = 0;
+		// var i = 0;
+		var i = Math.floor(Math.random() * list.length);
+		// console.log(i);
 
 		var newItem = $(list[i]);
 		var contains = false;
@@ -114,10 +107,11 @@ function handleDeezerSearch(list)
 
 		if (!contains)
 		{
-			// console.log('newItem:', newItem);
+			console.log('Adding Track...');
 			queue.push(newItem);
 			var str = '';
 			str += '<div class="music_option">';
+				str += '<i class="fa fa-times fa-lg close_button hide"></i>';
 				str += '<img src="'+newItem.children('logo')[0].innerHTML+'" alt="Album_Art" class="album_art">';
 				str += '<div class="meta">';
 					str += '<p class="title">'+newItem.children('name')[0].innerHTML+'</p>';
@@ -126,7 +120,12 @@ function handleDeezerSearch(list)
 				str += '</div>';
 			str += '</div>';
 
-			$('#queue')[0].innerHTML += str;
+
+
+			// $('#queue')[0].innerHTML += str;
+			$('#queue').append($(str).hide());
+
+			$('#queue').children(":last-child").fadeIn();
 		}
 
 		if (!started)
@@ -144,6 +143,10 @@ function handleDeezerSearch(list)
 function playNext()
 {
 	started = true;
+
+	inc = 0;
+	bar_cur = 0;
+
 	console.log('Playing Next...');
 	// console.log(queue[0].children('ContentItem')[0].outerHTML);
 	device.select(queue[0].children('ContentItem')[0].outerHTML, function(data){
@@ -151,23 +154,18 @@ function playNext()
 	});
 	queue.splice(0,1);
 
+
+	// var option = $('#queue').children(":first-child");
 	var curTrack = $('#queue').children(":first-child");
 	setCurTrack(curTrack);
-	curTrack.remove();
 
-	setTimeout(function(){
-		if(queue.length < 3)
-			{
-				console.log('Need more tracks. Searching for more songs...');
-				searchTwitter(getSearchTerm());
-			}
-	}, 5*1000);
+	removeOption(curTrack);
 }
 
 
 function setCurTrack(track)
 {
-	console.log('Track:', track);
+	// console.log('Track:', track);
 	$('#curCover').attr('src', track.find('img').attr('src'));
 	$('#curTitle').text(track.find('.title').text());
 	$('#curArtist').text(track.find('.artist').text());
@@ -212,9 +210,6 @@ function handleNowPlaying(data)
 	setTimeout(function(){
 		playNext();
 	}, (time_left*1000));
-
-	// if(queue.length < 5)
-	// 	searchTwitter("#CurrentlyPlaying");
 }
 
 function getSearchTerm()
@@ -224,7 +219,36 @@ function getSearchTerm()
 	termIndex++;
 
 	if(termIndex >= options.length)
-		termIndex = 0;
+		termIndex = Math.floor(Math.random() * options.length-1); //0;
 
 	return options[termIndex];
+}
+
+function removeOption(option)
+{
+	option.fadeOut(function(){
+		option.remove();
+
+		setTimeout(function(){
+			if(queue.length < 5)
+				{
+					console.log('Need more tracks. Searching for more songs...');
+					searchTwitter(getSearchTerm());
+				}
+		}, 5*1000);
+	});
+
+	// option.addClass('shrink');
+	// setTimeout(function(){
+	// 	option.remove();
+
+	// 	setTimeout(function(){
+	// 		if(queue.length < 3)
+	// 			{
+	// 				console.log('Need more tracks. Searching for more songs...');
+	// 				searchTwitter(getSearchTerm());
+	// 			}
+	// 	}, 5*1000);
+
+	// }, .5*1000);
 }

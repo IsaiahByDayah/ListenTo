@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
 	<script src="scripts/jquery.js"></script>
 	<script src="scripts/soundtouch_api.js"></script>
@@ -13,25 +14,32 @@
 	<script src="scripts/twitter.js"></script>
 </head>
 <body>
+	<i id="info" class="fa fa-info-circle fa-2x"></i>
+
 	<div id="header">
 		<h2>Welcome to <span class="fancy">#ListenTo</span></h2>
 	</div>
+
 	<div id="main">
 		<input id="deviceIP" placeholder="SoundTouch IP Address" type="text"><div id="setIP_button" class="button">Set</div>
 		<div id="search_button" class="button disabled">Search</div>
+		<div id="skip_button" class="button disabled">Skip</div>
 	</div>
+
 	<div id="nowPlaying">
 		<div id="changeOut">
 			<img id='curCover' src="images/placeholder.svg" alt="placeholder" class="album_art">
-			<p><b>Title:</b> <i><span id='curTitle'>##_Track_Name_##</span></i> <b>Artist:</b> <i><span id='curArtist'>##_Artist_Name_##</span></i> <b>Album:</b> <i><span id='curAlbum'>##_Album_Name_##</span></i></p>			
+			<p> <b>Title:</b><span class="small_spacer"></span><i><span id='curTitle' class="np_meta"></span></i>  <span class="spacer"></span>  <b>Artist:</b><span class="small_spacer"></span><i><span id='curArtist' class="np_meta"></span></i>  <span class="spacer"></span>  <b>Album:</b><span class="small_spacer"></span><i><span id='curAlbum' class="np_meta"></span></i> </p>			
 		</div>
 		<div id="back">
 			<div id="front"></div>
 		</div>
 	</div>
-	<div id="queue">
+
+	<div id="queue" class="no_select">
 		
-		<!-- <div class="music_option">
+		<!-- <div id="foo" class="music_option no_select">
+			<i class="fa fa-times fa-lg close_button hide"></i>
 			<img src="images/placeholder.svg" alt="placeholder" class="album_art">
 			<div class="meta">
 				<p class="title">##_Track_Name_##</p>
@@ -40,24 +48,27 @@
 			</div>
 		</div>
 
-		<div class="music_option">
+		<div class="music_option no_select">
+			<i class="fa fa-times fa-lg close_button hide"></i>
 			<img src="images/placeholder.svg" alt="placeholder" class="album_art">
 			<div class="meta">
-				<p class="title">##_Track_Name_##</p>
-				<p class="artist">##_Artist_Name_##</p>
-				<p class="album">##_Album_Name_##</p>
+				<p class="title">##_Track_Name_2_##</p>
+				<p class="artist">##_Artist_Name_2_##</p>
+				<p class="album">##_Album_Name_2_##</p>
 			</div>
 		</div>
 
-		<div class="music_option">
+		<div class="music_option no_select">
+			<i class="fa fa-times fa-lg close_button hide"></i>
 			<img src="images/placeholder.svg" alt="placeholder" class="album_art">
 			<div class="meta">
-				<p class="title">##_Track_Name_##</p>
-				<p class="artist">##_Artist_Name_##</p>
-				<p class="album">##_Album_Name_##</p>
+				<p class="title">##_Track_Name_3_##</p>
+				<p class="artist">##_Artist_Name_3_##</p>
+				<p class="album">##_Album_Name_3_##</p>
 			</div>
 		</div> -->
 
 	</div>
+	<div id="information"></div>
 </body>
 </html>

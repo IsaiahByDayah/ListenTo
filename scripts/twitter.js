@@ -42,6 +42,9 @@ function searchTwitter(q)
 			{
 				// console.log('Tweet Number '+i);
 				var tweet = data.statuses[i].text.toLowerCase();
+				// console.log('');
+				// console.log('');
+				// console.log('');
 				// console.log('Tweet: ', tweet);
 				var tweet2 = tweet.split(' ');
 				// console.log('Tweet2: ', tweet2);
@@ -56,20 +59,35 @@ function searchTwitter(q)
 							{
 								if(tweet2[j].indexOf('http') != 0)
 								{
-									tweet3 += tweet2[j] + ' ';
+									if(tweet2[j].indexOf('by') != 0)
+									{
+										tweet3 += tweet2[j] + ' ';
+									}
+									else
+									{
+										break;
+									}
 								}
+							}
+							else
+							{
+								tweet3 = '';
+								break;
 							}
 						}
 					}
 				}
 
-				// console.log('Tweet3 ->' + tweet3 + '<-');
+				// console.log('Tweet3: ', tweet3);
+				// console.log('');
+				// console.log('');
+				// console.log('');
 				// var ind = tweet.indexOf('#currentlyplaying');
 				// tweet.splice(ind, 17);
 				var tweet4 = tweet3.replace(/\s/g, "");
 				if(tweet4 !== '')
 				{	
-					console.log('search sent...');
+					// console.log('search sent...');
 					device.search("DEEZER", "isaiah_smith@bose.com", encodeURIComponent(tweet4), function(list){
 						// console.log(list);
 						handleDeezerSearch(list);
